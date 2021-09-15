@@ -19,5 +19,5 @@ pytz
 # don't know why these dependencies fail...
 click==7.1.2
 MarkupSafe==2.0
-# wtforms==2.2.1
+wtforms==2.2.1
 pillow
