@@ -40,10 +40,6 @@ course_terms_map = dict()
 courses_map = dict()
 
 def load_courses(insert=True):
-    # existing_depts = Dept.query.all()
-    # for dept in existing_depts:
-        # depts_code_map[dept.code] = dept
-    # print('%d existing departments loaded' % len(depts_code_map))
 
     existing_teachers = Teacher.query.all()
     for t in existing_teachers:
@@ -70,79 +66,33 @@ def load_courses(insert=True):
     new_term_count = 0
     new_class_count = 0
 
-    # int_allow_empty = lambda string: int(string) if string.strip() else 0
-    # exit(0)
-    # course_kcbh = {}
     json = parse_json(sys.argv[1])
     if 'dict' in json:
         json = json['dict']
     print('Data loaded with %d courses' % len(json))
-    # exit(0)
     for index, c in enumerate(json):
         print("\r" + str(index * 100 / len(json)) + "%", end="")
-        # course = c['course']
-        # code = course['code']
-        # term = int(semester['code'])
-        # exit(0)
         course = c
         term = c['semester']
         course_kcbh = dict(
-            # kcid = int(course['id']),
-            # name_eng = course['nameEn'],
             kcbh = course['kcode'],
             name = course['name'],
             credit = course['credit'],
             course_type = c['course_type'],
-
-            # course_level = c['courseGradation']['nameZh'] if c['courseGradation'] else None,
-            # join_type = c['classType']['nameZh'] if c['classType'] else None,
-            # teaching_type = c['courseType']['nameZh'] if c['courseType'] else None
         )
-
-        # if 'PeriodInfo' in course:
-        #     course_kcbh[code]['hours'] = course['PeriodInfo']['total']
-        #     course_kcbh[code]['hours_per_week'] = course['PeriodInfo']['periodsPerWeek']
 
         teachers = []
         teacher_names = []
         if 'teacher' in c:
             teachers = c['teacher'].split(',')
 
-        # elif 'teacherAssignmentList' in c:
-            # teachers = c['teacherAssignmentList']
-
         for teachername in teachers:
-            # if 'teacher' in _t:
-            #     teacher = _t['teacher']
-            #     teacher_name = teacher['person']['nameZh']
-            # else:
-            #     teacher = _t
-            #     teacher_name = teacher['nameZh']
             teacher_names.append(teachername)
             if teachername in teachers_map:
                 t = teachers_map[teachername]
             else:
                 t = Teacher()
             t.name = teachername
-            # t.gender = 'unknown'
-            # try:
-            #     if teacher['person']['gender']['nameEn'] == 'Male':
-            #         t.gender = 'male'
-            #     elif teacher['person']['gender']['nameEn'] == 'Female':
-            #         t.gender = 'female'
-            #     else:
-            #         t.gender = 'unknown'
-            # except:
-            #     t.gender = 'unknown'
-
-            # try:
-            #     DWDM = teacher['department']['code']
-            #     if DWDM in depts_code_map:
-            #         t._dept = depts_code_map[DWDM]
-            #     else:
-            #         print('Teacher department not found ' + DWDM + ': ' + str(teacher))
-            # except:
-            #     pass
 
             if not t.name in teachers_map:
                 db.session.add(t)
@@ -152,7 +102,6 @@ def load_courses(insert=True):
         course_key = c['name'] + '(' + ','.join(sorted(teacher_names)) + ')'
         if course_key in courses_map:
             course = courses_map[course_key]
-            # print('Existing course ' + course_key)
         else:
             course_name = c['name']
             course = Course()
@@ -170,25 +119,17 @@ def load_courses(insert=True):
             course_rate = CourseRate()
             course_rate.course = course
             db.session.add(course_rate)
-            # print('New course ' + course_key)
             new_course_count+=1
 
-        # update course info
-        # if c['openDepartment']['code'] in depts_code_map:
-        #     course.dept_id = depts_code_map[c['openDepartment']['code']].id
-        # else:
-        #     print('Department code ' + c['openDepartment']['code'] + ' not found in ' + str(c))
 
         # course term
         term_key = course_key + '@' + term
         if term_key in course_terms_map:
             course_term = course_terms_map[term_key]
-            # print('Existing course term ' + term_key)
         else:
             course_term = CourseTerm()
             db.session.add(course_term)
             course_terms_map[term_key] = course_term
-            # print('New course term ' + term_key)
             new_term_count+=1
 
         # update course term info
@@ -207,12 +148,10 @@ def load_courses(insert=True):
         if unique_key in course_classes_map:
             course_class = course_classes_map[unique_key]
             course_class.course = course # update course mapping
-            # print('Existing course class ' + unique_key)
         else:
             course_class = CourseClass()
             db.session.add(course_class)
             course_classes_map[unique_key] = course_class
-            # print('New course class ' + unique_key)
             new_class_count+=1
 
         # update course class info
