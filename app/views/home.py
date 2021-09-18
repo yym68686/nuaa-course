@@ -108,6 +108,7 @@ def signup():
             user.identity = 'Teacher'
             ok,message = user.bind_teacher(email)
             #TODO: deal with bind feedback
+            #TODO: nuaa teachers' same as students'
         else:
             #TODO: log Intenal error!
             pass
@@ -291,7 +292,8 @@ def search():
                     .union(exact_match(course_query_with_meta(2))) \
                     .union(include_match(course_query_with_meta(3))) \
                     .union(fuzzy_match(course_query_with_meta(4)))
-    ordered_courses = ordering(union_courses).group_by(Course.id)
+    ordered_courses = ordering(union_courses)
+    # ordered_courses = ordering(union_courses).group_by(Course.id)
 
     courses_count = teacher_match(Course.query).union(fuzzy_match(Course.query)).count()
 

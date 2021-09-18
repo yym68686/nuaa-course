@@ -430,22 +430,22 @@ class Teacher(db.Model):
     __tablename__ = 'teachers'
 
     id = db.Column(db.Integer, unique=True, primary_key=True)
-
     name = db.Column(db.String(80))
-    dept_id = db.Column(db.Integer, db.ForeignKey('depts.id'))
+
 
     email = db.Column(db.String(80))
     title = db.Column(db.String(80))
     office_phone = db.Column(db.String(80))
-    gender = db.Column(db.Enum('male','female','unknown'),default='unknown')
     description = db.Column(db.Text)
     homepage = db.Column(db.Text)
     research_interest = db.Column(db.Text)
     _image = db.Column(db.String(100))
-    last_edit_time = db.Column(db.DateTime)
     image_locked = db.Column(db.Boolean, default=False, nullable=False)
     info_locked = db.Column(db.Boolean, default=False, nullable=False)
 
+    last_edit_time = db.Column(db.DateTime)
+    dept_id = db.Column(db.Integer, db.ForeignKey('depts.id'))
+    gender = db.Column(db.Enum('male','female','unknown'),default='unknown')
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
     dept = db.relationship('Dept', backref='teachers')

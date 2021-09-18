@@ -60,8 +60,8 @@ class CourseClass(db.Model):
 
     id = db.Column(db.Integer, unique=True, primary_key=True)
     course_id = db.Column(db.Integer, db.ForeignKey('courses.id'))
-    term = db.Column(db.String(10), index=True)
     cno = db.Column(db.String(20))  # course_no, 课堂号，长的
+    term = db.Column(db.String(10), index=True)
 
     time_locations = db.relationship('CourseTimeLocation', backref='class')
     #course: backref to Course
@@ -87,14 +87,15 @@ class CourseTerm(db.Model):
 
     id = db.Column(db.Integer, unique=True, primary_key=True)
     course_id = db.Column(db.Integer, db.ForeignKey('courses.id'))
+    courseries = db.Column(db.String(20)) # course_series, 课程编号，短的
+    course_type = db.Column(db.String(20)) # 课程类别，计划内，公选课……
+    credit = db.Column(db.Integer) # 学分
     term = db.Column(db.String(10), index=True) # 学年学期，例如 20142 表示 2015 年春季学期
 
-    courseries = db.Column(db.String(20)) # course_series, 课程编号，短的
-    kcid = db.Column(db.Integer)    # 课程id
 
+
+    kcid = db.Column(db.Integer)    # 课程id
     course_major = db.Column(db.String(20)) # 学科类别
-    course_type = db.Column(db.String(20)) # 课程类别，计划内，公选课……
-    course_level = db.Column(db.String(20)) # 课程层次
     join_type = db.Column(db.String(20)) # 选课类别
     teaching_type = db.Column(db.String(20)) # 教学类型
     grading_type = db.Column(db.String(20)) # 评分制
@@ -104,11 +105,11 @@ class CourseTerm(db.Model):
     description = db.Column(db.Text()) # 教务处课程简介
     description_eng = db.Column(db.Text()) # 教务处英文简介
 
-    credit = db.Column(db.Integer) # 学分
     hours = db.Column(db.Integer)  # 学时
     hours_per_week = db.Column(db.Integer) # 周学时
     class_numbers = db.Column(db.String(200)) # 上课班级
     campus = db.Column(db.String(20)) # 校区
+    course_level = db.Column(db.String(20)) # 课程层次
     start_week = db.Column(db.Integer)  # 起始周
     end_week = db.Column(db.Integer) # 终止周
 
@@ -161,10 +162,10 @@ class Course(db.Model):
     dept_id = db.Column(db.Integer, db.ForeignKey('depts.id'))
 
     introduction = db.Column(db.Text) # 老师提交的课程简介
-    homepage = db.Column(db.Text) # 课程主页
     last_edit_time = db.Column(db.DateTime)
 
     _image = db.Column(db.String(100))
+    homepage = db.Column(db.Text) # 课程主页
 
     terms = db.relationship('CourseTerm', backref='course', order_by='desc(CourseTerm.term)', lazy='dynamic')
     classes = db.relationship('CourseClass', backref='course', lazy='dynamic')
