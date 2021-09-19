@@ -170,12 +170,13 @@ def term_display(term):
     if isinstance(term, list):
         return ' '.join([ term_display(t) for t in term ])
     try:
-        if term[4] == '1':
+        if term[4] == '9':
             return term[0:4] + '秋'
         elif term[4] == '2':
-            return str(int(term[0:4])+1) + '春'
-        elif term[4] == '3':
-            return str(int(term[0:4])+1) + '夏'
+            return term[0:4] + '春'
+            # return str(int(term[0:4])+1) + '春'
+        # elif term[4] == '3':
+        #     return str(int(term[0:4])+1) + '夏'
         else:
             return '未知'
     except:

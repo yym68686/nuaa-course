@@ -434,7 +434,7 @@ class Course(db.Model):
     @property
     def image(self):
         if self._image:
-            return '/uploads/images/' + self._image
+            return '/static/uploads/images/' + self._image
         return '/static/image/user.png'
 
     @property
@@ -482,6 +482,7 @@ class Course(db.Model):
 
     @property
     def term_ids(self):
+        # print(self.terms)
         return [ t.term for t in self.terms ]
 
     # sqlalchemy uses __getattr__, so we cannot use it
