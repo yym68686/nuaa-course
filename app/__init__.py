@@ -14,7 +14,6 @@ from flask_babel import Babel
 from datetime import datetime
 from flask_debugtoolbar import DebugToolbarExtension
 
-
 app = Flask(__name__)
 app.config.from_object('config.default')
 
