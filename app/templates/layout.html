@@ -24,7 +24,7 @@
           <li {% if this_module and this_module=='home.follow_reviews' %}class="active"{% endif %}><a href="{{ url_for('home.follow_reviews') }}">关注</a></li>
           {% endif %}
           <li {% if this_module and this_module=='course.popular' %}class="active"{% endif %}><a href="{{ url_for('course.popular') }}">热门</a></li>
-          <li {% if this_module and this_module=='course.public_courses' %}class="active"{% endif %}><a href="{{ url_for('course.public_courses') }}">公选</a></li>
+          <!-- <li {% if this_module and this_module=='course.public_courses' %}class="active"{% endif %}><a href="{{ url_for('course.public_courses') }}">公选</a></li> -->
         </ul>
 
         <form class="navbar-form navbar-left desktop" action="{{ url_for('home.search') }}" method="get" role="search">
