@@ -51,7 +51,7 @@ class CourseTimeLocation(db.Model):
 course_teachers = db.Table('course_teachers',
     db.Column('course_id', db.Integer, db.ForeignKey('courses.id')),
     db.Column('teacher_id', db.Integer, db.ForeignKey('teachers.id')),
-    db.UniqueConstraint('course_id', 'teacher_id'),
+    # db.UniqueConstraint('course_id', 'teacher_id'),
 )
 
 # course crawled from teach.ustc.edu.cn
@@ -89,7 +89,7 @@ class CourseTerm(db.Model):
     course_id = db.Column(db.Integer, db.ForeignKey('courses.id'))
     courseries = db.Column(db.String(20)) # course_series, 课程编号，短的
     course_type = db.Column(db.String(20)) # 课程类别，计划内，公选课……
-    credit = db.Column(db.Integer) # 学分
+    credit = db.Column(db.String(20)) # 学分
     term = db.Column(db.String(10), index=True) # 学年学期，例如 20142 表示 2015 年春季学期
 
 

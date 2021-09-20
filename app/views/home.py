@@ -102,16 +102,17 @@ def signup():
         password = request.form.get('password')
         user = User(username=username, email=email,password=password)
         email_suffix = email.split('@')[-1]
-        if email_suffix == 'mail.ustc.edu.cn':
-            user.identity = 'Student'
-        elif email_suffix == 'ustc.edu.cn':
-            user.identity = 'Teacher'
-            ok,message = user.bind_teacher(email)
+        # if email_suffix == 'mail.ustc.edu.cn':
+            # user.identity = 'Student'
+        user.identity = 'Student'
+        # elif email_suffix == 'ustc.edu.cn':
+            # user.identity = 'Teacher'
+            # ok,message = user.bind_teacher(email)
             #TODO: deal with bind feedback
             #TODO: nuaa teachers' same as students'
-        else:
+        # else:
             #TODO: log Intenal error!
-            pass
+            # pass
         send_confirm_mail(user.email)
         user.save()
         #login_user(user)

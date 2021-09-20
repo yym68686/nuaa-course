@@ -111,6 +111,9 @@ def load_courses(insert=True):
 
             for t in teacher_names:
                 course.teachers.append(teachers_map[t])
+                # print(teachers_map[t])
+                # exit(0)
+
 
             db.session.add(course)
             courses_map[course_key] = course
@@ -142,6 +145,8 @@ def load_courses(insert=True):
 
         for key in course_kcbh:
             setattr(course_term, key, course_kcbh[key])
+        # with open("log", 'a', encoding=" utf-8") as f:
+            # f.writelines(c['teacher'] + " " + c['name'] + " " + c['credit'] + "\n")
 
         # course class
         unique_key = class_code + '@' + term
