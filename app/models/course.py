@@ -51,6 +51,7 @@ class CourseTimeLocation(db.Model):
 course_teachers = db.Table('course_teachers',
     db.Column('course_id', db.Integer, db.ForeignKey('courses.id')),
     db.Column('teacher_id', db.Integer, db.ForeignKey('teachers.id')),
+    
     # db.UniqueConstraint('course_id', 'teacher_id'),
 )
 
