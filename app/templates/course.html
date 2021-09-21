@@ -243,6 +243,7 @@
         </div>
 
         {% for teacher in course.teachers %}
+        {% if teacher.name != '' %}
         <div class="ud-pd-md dashed">
           <h4 class="blue">{{ teacher.name }}老师的其他课</h5>
           {% for rel_course in course.same_teacher_courses(teacher) %}
@@ -258,6 +259,7 @@
           {% endif %}
           {% endfor %}
         </div>
+        {% endif %}
         {% endfor %}
       </div>
     </div> <!-- row -->
