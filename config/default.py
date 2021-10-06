@@ -17,7 +17,6 @@ LANGUAGES = {
 
 
 # SQL config
-# SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://icourse:eDuTieudXcfk@localhost/icourse?charset=utf8'
 SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://nuaa:nuaa@localhost/icourse?charset=utf8'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
