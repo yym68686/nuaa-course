@@ -36,7 +36,8 @@ server {
     }
 
     location /static {
-        root /home/boj/ustc-course/app;
+        proxy_pass http://127.0.0.1:3000;
+        root /home/ubuntu/nuaa-course/nuaa-course/app;
         autoindex off;
     }
 
