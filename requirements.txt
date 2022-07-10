@@ -22,3 +22,4 @@ MarkupSafe==2.0
 wtforms==2.2.1
 pillow==7.0.0
 Werkzeug==2.0.0
+jinja2==3.0.3
