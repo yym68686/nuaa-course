@@ -168,7 +168,7 @@ class Course(db.Model):
     _image = db.Column(db.String(100))
     homepage = db.Column(db.Text) # 课程主页
 
-    terms = db.relationship('CourseTerm', backref='course', order_by='desc(CourseTerm.term)', lazy='dynamic')
+    terms = db.relationship('CourseTerm', backref='course', order_by='desc(CourseTerm.term)', lazy='dynamic') # lazy='dynamic' 延迟求值，这样才能用 filter_by 等过滤函数
     classes = db.relationship('CourseClass', backref='course', lazy='dynamic')
     _dept = db.relationship('Dept', backref='courses', lazy='joined')
 
