@@ -101,7 +101,7 @@ def signup():
         email = request.form.get('email')
         password = request.form.get('password')
         user = User(username=username, email=email,password=password)
-        email_suffix = email.split('@')[-1]
+        # email_suffix = email.split('@')[-1]
         # if email_suffix == 'mail.ustc.edu.cn':
             # user.identity = 'Student'
         user.identity = 'Student'
