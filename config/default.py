@@ -2,7 +2,7 @@ import sys
 
 # Server config
 SERVER_NAME = None
-DEBUG = True
+DEBUG = False
 for arg in sys.argv:
     if arg == '-d':
         DEBUG = True
@@ -34,7 +34,7 @@ MAIL_MAX_EMAILS = None
 MAIL_ASCII_ATTACHMENTS = False
 
 # Upload config
-UPLOAD_FOLDER = '/home/yym/Desktop/nuaa-course/app/static/uploads'
+UPLOAD_FOLDER = '/home/uploads'
 # Alowed extentsions for a filetype
 # for example 'image': set(['png', 'jpg', 'jpeg', 'gif'])
 ALLOWED_EXTENSIONS = {

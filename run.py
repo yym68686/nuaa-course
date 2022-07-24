@@ -15,7 +15,7 @@ def start():
         db.create_all()
         app.run(port=8080, processes=True, host='0.0.0.0')
     else:
-        app.run(port=3000, processes=True)
+        app.run(port=3000, processes=True, host="0.0.0.0")
 
 
 

@@ -435,7 +435,7 @@ class Course(db.Model):
     @property
     def image(self):
         if self._image:
-            return '/static/uploads/images/' + self._image
+            return '/uploads/images/' + self._image
         return '/static/image/user.png'
 
     @property
