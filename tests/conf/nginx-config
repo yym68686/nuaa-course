@@ -58,8 +58,5 @@ server {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
         include snippets/fastcgi-php.conf;
-        # fix the phpmyadmin blank page bug: https://stackoverflow.com/questions/15423500/nginx-showing-blank-php-pages
-        # fastcgi_index index.php;
-        # include fastcgi_params;
     }
 }
