@@ -16,6 +16,7 @@ jobs:
         env:
           DEPLOY_KEY: ${{ secrets.ACCESS_TOKEN }}
           ARGS: "-avz --delete"
+          SERVER_PORT: '22'
           FOLDER: ./
           SERVER_IP: ${{ secrets.REMOTE_HOST }}
           USERNAME: ${{ secrets.REMOTE_USER }}
