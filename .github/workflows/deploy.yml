@@ -10,7 +10,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      # Deploy
       - name: Deploy
         uses: AEnterprise/rsync-deploy@v1.0
         env:
