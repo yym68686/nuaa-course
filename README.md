@@ -5,7 +5,7 @@
 
 ## 上手指南
 
-https://yym68686.top/NUAA-6a2e6dddc7d947e0807cb29c317207e9
+https://yym68686.top/nuaa-课程评价系统开发指南
 
 ## Contributors
 @yym68686
